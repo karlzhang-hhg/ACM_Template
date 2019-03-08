@@ -34,26 +34,26 @@ struct Convex{
 	struct fac{
 		int a, b, c;	
 		bool ok;
-	} add, F[maxn*4];
-	TPoint3  P[maxn] ;
-	int n, cnt, cou;
-	int to[maxn][maxn];
-	bool v[ maxn * 4];
+	} add, F[maxn*4]; // What is add, and F?
+	TPoint3  P[maxn] ; // I think it stores points
+	int n, cnt, cou; // What is cnt and cou?
+	int to[maxn][maxn]; // What is "to"?
+	bool v[ maxn * 4]; // What is "v"?
 	//请在使用前先初始化....
 	void INIT(){
 		cnt = cou = 0;
 		memset(to ,0 ,sizeof to);
 		memset(v, 0, sizeof v) ;
 	}
-	bool dotsInLine(TPoint3 p1,TPoint3 p2,TPoint3 p3){
+	bool dotsInLine(TPoint3 p1,TPoint3 p2,TPoint3 p3){ // Judge if three points are co-linear.
 		return (p2-p1).X(p3-p1).len() <eps;
 	}
-	db ptof(TPoint3 &p, fac &f)	{
+	db ptof(TPoint3 &p, fac &f)	{ // Distance of points to a plane of a facet.
 		TPoint3 m = P[f.b]-P[f.a], n = P[f.c]-P[f.a], t = p-P[f.a];
 		return m .X( n) .O(t); 
 	}	
 
-	void deal(int p, int a, int b){
+	void deal(int p, int a, int b){ // What is "deal"?
 		int f = to[a][b];
 		if (F[f].ok){
 			if (ptof(P[p], F[f]) > -eps) dfs(p, f);
@@ -65,14 +65,14 @@ struct Convex{
 		}
 	}
 
-	void dfs(int p, int cur){
+	void dfs(int p, int cur){ // What is dfs?
 		F[cur].ok = 0;
 		deal(p, F[cur].b, F[cur].a);
 		deal(p, F[cur].c, F[cur].b);
 		deal(p, F[cur].a, F[cur].c);
 	}
 
-	void init(){
+	void init(){ // What is "cou"?
 		int i;
 		for(cou = i = 1; i < n; i++)switch(cou){
 				case 1:
